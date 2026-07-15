@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RestaurantIQ — Entrar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --brand:#00C896;
+  --brand-dark:#00a87e;
+  --brand-light:rgba(0,200,150,.1);
+  --gold:#C9A84C;
+  --bg:#0A0D0F;
+  --bg2:#111518;
+  --bg3:#161B1F;
+  --surface:#1C2227;
+  --border:rgba(255,255,255,.08);
+  --border-hover:rgba(255,255,255,.15);
+  --text1:#F0EDE8;
+  --text2:#8A8880;
+  --text3:#555250;
+  --danger:#FF5A5A;
+  --success:#00C896;
+}
+
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--bg);
+  color:var(--text1);
+  min-height:100vh;
+  display:flex;
+  overflow:hidden;
+}
+
+/* ── LEFT PANEL ─────────────────────────── */
+.left-panel{
+  width:52%;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:48px;
+  overflow:hidden;
+}
+
+.left-bg{
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 80%, rgba(0,200,150,.07) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 20%, rgba(201,168,76,.05) 0%, transparent 50%),
+    var(--bg2);
+}
+
+/* grain texture */
+.left-bg::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;
+}
+
+/* decorative lines */
+.deco-lines{
+  position:absolute;
+  top:0; right:0; bottom:0; left:0;
+  pointer-events:none;
+}
+.deco-lines svg{
+  width:100%;height:100%;position:absolute;inset:0;
+}
+
+.left-logo{
+  position:relative;
+  z-index:2;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.logo-mark{
+  width:36px;height:36px;
+  border:1.5px solid var(--brand);
+  border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+}
+.logo-mark span{
+  font-family:'Playfair Display',serif;
+  font-size:18px;
+  font-weight:700;
+  color:var(--brand);
+  line-height:1;
+}
+.logo-name{
+  font-family:'Playfair Display',serif;
+  font-size:18px;
+  font-weight:500;
+  letter-spacing:.5px;
+  color:var(--text1);
+}
+.logo-name em{font-style:normal;color:var(--brand)}
+
+.left-center{
+  position:relative;
+  z-index:2;
+}
+
+.oliveira-intro{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:6px 14px;
+  border:1px solid rgba(0,200,150,.25);
+  border-radius:100px;
+  font-size:11px;
+  font-weight:500;
+  color:var(--brand);
+  letter-spacing:.5px;
+  margin-bottom:28px;
+  background:rgba(0,200,150,.05);
+}
+.oliveira-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--brand);
+  animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+
+.left-headline{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(32px,3.5vw,46px);
+  font-weight:700;
+  line-height:1.15;
+  letter-spacing:-.5px;
+  color:var(--text1);
+  margin-bottom:20px;
+}
+.left-headline .accent{
+  color:var(--brand);
+  font-style:italic;
+}
+
+.left-sub{
+  font-size:15px;
+  font-weight:300;
+  color:var(--text2);
+  line-height:1.7;
+  max-width:380px;
+  margin-bottom:36px;
+}
+
+.feature-list{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.feature-item{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:13px;
+  color:var(--text2);
+  font-weight:400;
+}
+.feature-check{
+  width:18px;height:18px;
+  border-radius:50%;
+  background:rgba(0,200,150,.12);
+  border:1px solid rgba(0,200,150,.3);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.feature-check svg{width:9px;height:9px;stroke:var(--brand);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+
+.left-footer{
+  position:relative;z-index:2;
+}
+.trust-badges{
+  display:flex;
+  gap:20px;
+  align-items:center;
+}
+.trust-item{
+  display:flex;flex-direction:column;
+}
+.trust-num{
+  font-family:'DM Mono',monospace;
+  font-size:18px;
+  font-weight:500;
+  color:var(--text1);
+}
+.trust-label{
+  font-size:11px;
+  color:var(--text3);
+  margin-top:2px;
+}
+.trust-sep{
+  width:1px;
+  height:28px;
+  background:var(--border);
+}
+
+/* ── RIGHT PANEL ────────────────────────── */
+.right-panel{
+  width:48%;
+  background:var(--bg);
+  border-left:1px solid var(--border);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:48px 56px;
+  position:relative;
+}
+
+.form-container{
+  width:100%;
+  max-width:380px;
+}
+
+/* tabs */
+.auth-tabs{
+  display:flex;
+  background:var(--surface);
+  border-radius:10px;
+  padding:4px;
+  margin-bottom:32px;
+  border:1px solid var(--border);
+}
+.auth-tab{
+  flex:1;
+  padding:9px;
+  text-align:center;
+  font-size:13px;
+  font-weight:500;
+  color:var(--text2);
+  border-radius:7px;
+  cursor:pointer;
+  transition:all .2s;
+  letter-spacing:.2px;
+}
+.auth-tab.active{
+  background:var(--bg3);
+  color:var(--text1);
+  border:1px solid var(--border-hover);
+}
+
+.form-title{
+  font-family:'Playfair Display',serif;
+  font-size:24px;
+  font-weight:700;
+  color:var(--text1);
+  margin-bottom:6px;
+}
+.form-subtitle{
+  font-size:13px;
+  color:var(--text2);
+  margin-bottom:28px;
+  line-height:1.5;
+}
+.form-subtitle strong{color:var(--text1)}
+
+.field{
+  margin-bottom:16px;
+}
+.field label{
+  display:block;
+  font-size:12px;
+  font-weight:500;
+  color:var(--text2);
+  margin-bottom:7px;
+  letter-spacing:.3px;
+}
+.field input{
+  width:100%;
+  padding:12px 16px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:10px;
+  font-size:14px;
+  color:var(--text1);
+  font-family:'DM Sans',sans-serif;
+  transition:all .2s;
+  outline:none;
+  -webkit-appearance:none;
+}
+.field input::placeholder{color:var(--text3)}
+.field input:focus{
+  border-color:rgba(0,200,150,.5);
+  background:var(--bg3);
+  box-shadow:0 0 0 3px rgba(0,200,150,.06);
+}
+.field input.error{border-color:rgba(255,90,90,.5);}
+
+.field-hint{
+  font-size:11px;
+  color:var(--text3);
+  margin-top:5px;
+  line-height:1.4;
+}
+.field-error{
+  font-size:11px;
+  color:var(--danger);
+  margin-top:5px;
+  display:none;
+}
+.field-error.show{display:block}
+
+.password-wrap{position:relative}
+.password-wrap input{padding-right:44px}
+.eye-btn{
+  position:absolute;right:14px;top:50%;transform:translateY(-50%);
+  background:none;border:none;cursor:pointer;color:var(--text3);
+  padding:0;display:flex;align-items:center;
+  transition:color .15s;
+}
+.eye-btn:hover{color:var(--text2)}
+.eye-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round}
+
+.access-key-wrap{
+  position:relative;
+}
+.access-key-wrap input{
+  padding-right:44px;
+  font-family:'DM Mono',monospace;
+  font-size:13px;
+  letter-spacing:.5px;
+}
+.key-icon{
+  position:absolute;right:14px;top:50%;transform:translateY(-50%);
+  color:var(--text3);pointer-events:none;
+}
+.key-icon svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round}
+
+.terms-check{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  margin-bottom:20px;
+  margin-top:4px;
+}
+.terms-check input[type=checkbox]{
+  width:16px;height:16px;
+  accent-color:var(--brand);
+  border-radius:4px;
+  flex-shrink:0;
+  margin-top:1px;
+  cursor:pointer;
+}
+.terms-check label{
+  font-size:12px;
+  color:var(--text2);
+  line-height:1.5;
+  cursor:pointer;
+}
+.terms-check a{color:var(--brand);text-decoration:none}
+.terms-check a:hover{text-decoration:underline}
+
+.submit-btn{
+  width:100%;
+  padding:13px;
+  background:var(--brand);
+  color:#000;
+  font-family:'DM Sans',sans-serif;
+  font-size:14px;
+  font-weight:600;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  transition:all .2s;
+  letter-spacing:.2px;
+  position:relative;
+  overflow:hidden;
+}
+.submit-btn:hover{background:var(--brand-dark);transform:translateY(-1px)}
+.submit-btn:active{transform:translateY(0)}
+.submit-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+
+.submit-btn .spinner{
+  width:16px;height:16px;
+  border:2px solid rgba(0,0,0,.3);
+  border-top-color:#000;
+  border-radius:50%;
+  animation:spin .6s linear infinite;
+  display:none;
+  margin:0 auto;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.submit-btn.loading .btn-text{display:none}
+.submit-btn.loading .spinner{display:block}
+
+.divider{
+  display:flex;align-items:center;gap:12px;
+  margin:20px 0;
+}
+.divider-line{flex:1;height:1px;background:var(--border)}
+.divider-text{font-size:11px;color:var(--text3);white-space:nowrap}
+
+.forgot-link{
+  text-align:right;
+  margin-top:-8px;
+  margin-bottom:16px;
+}
+.forgot-link a{
+  font-size:12px;
+  color:var(--text3);
+  text-decoration:none;
+  transition:color .15s;
+}
+.forgot-link a:hover{color:var(--brand)}
+
+/* ACCESS DENIED / PENDING states */
+.status-card{
+  display:none;
+  padding:16px;
+  border-radius:12px;
+  margin-bottom:20px;
+  font-size:13px;
+  line-height:1.5;
+}
+.status-card.pending{
+  background:rgba(201,168,76,.08);
+  border:1px solid rgba(201,168,76,.25);
+  color:#C9A84C;
+}
+.status-card.denied{
+  background:rgba(255,90,90,.08);
+  border:1px solid rgba(255,90,90,.25);
+  color:var(--danger);
+}
+.status-card.success-card{
+  background:rgba(0,200,150,.08);
+  border:1px solid rgba(0,200,150,.25);
+  color:var(--brand);
+}
+
+/* KEY VALID INDICATOR */
+.key-valid{
+  display:none;
+  align-items:center;
+  gap:6px;
+  font-size:11px;
+  color:var(--brand);
+  margin-top:5px;
+}
+.key-valid.show{display:flex}
+.key-valid-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--brand);
+}
+
+.right-footer{
+  position:absolute;
+  bottom:24px;
+  font-size:11px;
+  color:var(--text3);
+  text-align:center;
+}
+.right-footer a{color:var(--text3);text-decoration:none}
+.right-footer a:hover{color:var(--text2)}
+
+/* form panels */
+.form-panel{display:none}
+.form-panel.active{display:block}
+
+/* responsive */
+@media(max-width:768px){
+  body{flex-direction:column;overflow:auto}
+  .left-panel{display:none}
+  .right-panel{width:100%;padding:40px 28px;min-height:100vh;justify-content:flex-start;padding-top:60px}
+}
+
+/* entrance animation */
+.form-container{
+  animation:fadeUp .4s ease both;
+}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(16px)}
+  to{opacity:1;transform:translateY(0)}
+}
+</style>
+</head>
+<body>
+
+<!-- LEFT PANEL -->
+<div class="left-panel">
+  <div class="left-bg"></div>
+  <div class="deco-lines">
+    <svg viewBox="0 0 600 800" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="480" y1="0" x2="480" y2="800" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+      <line x1="0" y1="600" x2="600" y2="600" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+      <circle cx="480" cy="600" r="120" stroke="rgba(0,200,150,0.05)" stroke-width="1" fill="none"/>
+      <circle cx="480" cy="600" r="60" stroke="rgba(0,200,150,0.08)" stroke-width="1" fill="none"/>
+    </svg>
+  </div>
+
+  <div class="left-logo">
+    <div class="logo-mark"><span>R</span></div>
+    <div class="logo-name">Restaurant<em>IQ</em></div>
+  </div>
+
+  <div class="left-center">
+    <div class="oliveira-intro">
+      <div class="oliveira-dot"></div>
+      Oliveira — sua IA analista
+    </div>
+
+    <h1 class="left-headline">
+      Gestão inteligente<br>
+      para <span class="accent">restaurantes</span><br>
+      que crescem.
+    </h1>
+
+    <p class="left-sub">
+      CMV, fichas técnicas, estoque e DRE integrados com a Oliveira — 
+      inteligência artificial que analisa seu restaurante como um CFO dedicado.
+    </p>
+
+    <div class="feature-list">
+      <div class="feature-item">
+        <div class="feature-check">
+          <svg viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg>
+        </div>
+        Cálculo automático de CMV e fator de correção
+      </div>
+      <div class="feature-item">
+        <div class="feature-check">
+          <svg viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg>
+        </div>
+        Alertas de estoque, vencimento e aumento de custo
+      </div>
+      <div class="feature-item">
+        <div class="feature-check">
+          <svg viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg>
+        </div>
+        Oliveira responde perguntas sobre seus dados em tempo real
+      </div>
+      <div class="feature-item">
+        <div class="feature-check">
+          <svg viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg>
+        </div>
+        DRE automatizado e análise de margem por prato
+      </div>
+    </div>
+  </div>
+
+  <div class="left-footer">
+    <div class="trust-badges">
+      <div class="trust-item">
+        <span class="trust-num">+340</span>
+        <span class="trust-label">restaurantes ativos</span>
+      </div>
+      <div class="trust-sep"></div>
+      <div class="trust-item">
+        <span class="trust-num">R$2.8M</span>
+        <span class="trust-label">em desperdício evitado</span>
+      </div>
+      <div class="trust-sep"></div>
+      <div class="trust-item">
+        <span class="trust-num">99,7%</span>
+        <span class="trust-label">uptime garantido</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RIGHT PANEL -->
+<div class="right-panel">
+  <div class="form-container">
+
+    <!-- TABS -->
+    <div class="auth-tabs">
+      <div class="auth-tab active" id="tab-login" onclick="showTab('login')">Entrar</div>
+      <div class="auth-tab" id="tab-register" onclick="showTab('register')">Criar conta</div>
+    </div>
+
+    <!-- ═══ LOGIN FORM ═══════════════════════════ -->
+    <div class="form-panel active" id="panel-login">
+      <h2 class="form-title">Bem-vindo de volta</h2>
+      <p class="form-subtitle">Acesse seu painel e converse com a <strong>Oliveira</strong>.</p>
+
+      <div class="status-card denied" id="login-error-card"></div>
+
+      <form id="form-login" onsubmit="handleLogin(event)">
+        <div class="field">
+          <label>E-mail</label>
+          <input type="email" id="login-email" placeholder="seu@restaurante.com.br" autocomplete="email" required>
+          <div class="field-error" id="err-login-email">E-mail inválido</div>
+        </div>
+
+        <div class="field">
+          <label>Senha</label>
+          <div class="password-wrap">
+            <input type="password" id="login-password" placeholder="••••••••" autocomplete="current-password" required>
+            <button type="button" class="eye-btn" onclick="togglePassword('login-password', this)">
+              <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+          <div class="field-error" id="err-login-pass">Senha incorreta</div>
+        </div>
+
+        <div class="forgot-link">
+          <a href="#" onclick="showForgot()">Esqueci minha senha</a>
+        </div>
+
+        <button type="submit" class="submit-btn" id="btn-login">
+          <span class="btn-text">Entrar no painel</span>
+          <div class="spinner"></div>
+        </button>
+      </form>
+
+      <div class="divider">
+        <div class="divider-line"></div>
+        <span class="divider-text">Ainda não tem conta?</span>
+        <div class="divider-line"></div>
+      </div>
+
+      <button class="submit-btn" style="background:var(--surface);color:var(--text1);border:1px solid var(--border)" onclick="showTab('register')">
+        Criar minha conta
+      </button>
+    </div>
+
+    <!-- ═══ REGISTER FORM ════════════════════════ -->
+    <div class="form-panel" id="panel-register">
+      <h2 class="form-title">Criar sua conta</h2>
+      <p class="form-subtitle">Insira sua <strong>chave de acesso</strong> recebida após o pagamento.</p>
+
+      <div class="status-card" id="register-status-card"></div>
+
+      <form id="form-register" onsubmit="handleRegister(event)">
+        <div class="field">
+          <label>Nome completo</label>
+          <input type="text" id="reg-name" placeholder="João Silva" autocomplete="name" required>
+          <div class="field-error" id="err-reg-name">Digite seu nome completo</div>
+        </div>
+
+        <div class="field">
+          <label>Nome do restaurante</label>
+          <input type="text" id="reg-restaurant" placeholder="Restaurante Casa Verde" required>
+          <div class="field-error" id="err-reg-restaurant">Digite o nome do restaurante</div>
+        </div>
+
+        <div class="field">
+          <label>E-mail</label>
+          <input type="email" id="reg-email" placeholder="seu@restaurante.com.br" autocomplete="email" required>
+          <div class="field-error" id="err-reg-email">Digite um e-mail válido</div>
+        </div>
+
+        <div class="field">
+          <label>Senha</label>
+          <div class="password-wrap">
+            <input type="password" id="reg-password" placeholder="Mínimo 8 caracteres" autocomplete="new-password" required oninput="checkPassword(this)">
+            <button type="button" class="eye-btn" onclick="togglePassword('reg-password', this)">
+              <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+          <div class="field-hint" id="pass-strength"></div>
+          <div class="field-error" id="err-reg-pass">Senha deve ter mínimo 8 caracteres</div>
+        </div>
+
+        <div class="field">
+          <label>Chave de acesso <span style="color:var(--gold);font-size:10px;margin-left:4px">OBRIGATÓRIO</span></label>
+          <div class="access-key-wrap">
+            <input type="text" id="reg-key" placeholder="RIQ-XXXX-XXXX-XXXX" maxlength="19" oninput="formatKey(this)" required>
+            <div class="key-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+            </div>
+          </div>
+          <div class="key-valid" id="key-valid-msg">
+            <div class="key-valid-dot"></div>
+            Chave válida — Plano Pro identificado
+          </div>
+          <div class="field-hint">Você recebeu sua chave por e-mail após confirmar o pagamento.</div>
+          <div class="field-error" id="err-reg-key">Chave de acesso inválida ou já utilizada</div>
+        </div>
+
+        <div class="terms-check">
+          <input type="checkbox" id="terms" required>
+          <label for="terms">
+            Concordo com os <a href="#">Termos de Uso</a> e a <a href="#">Política de Privacidade</a> do RestaurantIQ
+          </label>
+        </div>
+
+        <button type="submit" class="submit-btn" id="btn-register">
+          <span class="btn-text">Ativar minha conta</span>
+          <div class="spinner"></div>
+        </button>
+      </form>
+
+      <div class="divider">
+        <div class="divider-line"></div>
+        <span class="divider-text">Já tem conta?</span>
+        <div class="divider-line"></div>
+      </div>
+
+      <button class="submit-btn" style="background:var(--surface);color:var(--text1);border:1px solid var(--border)" onclick="showTab('login')">
+        Fazer login
+      </button>
+    </div>
+
+    <!-- ═══ FORGOT PASSWORD ══════════════════════ -->
+    <div class="form-panel" id="panel-forgot">
+      <button onclick="showTab('login')" style="background:none;border:none;color:var(--text2);font-size:13px;cursor:pointer;padding:0;margin-bottom:20px;display:flex;align-items:center;gap:6px;font-family:'DM Sans',sans-serif">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Voltar ao login
+      </button>
+
+      <h2 class="form-title">Recuperar senha</h2>
+      <p class="form-subtitle">Enviaremos um link de redefinição para o seu e-mail.</p>
+
+      <div class="status-card success-card" id="forgot-success" style="display:none">
+        ✓ Link enviado! Verifique sua caixa de entrada e spam.
+      </div>
+
+      <form id="form-forgot" onsubmit="handleForgot(event)">
+        <div class="field">
+          <label>E-mail da conta</label>
+          <input type="email" id="forgot-email" placeholder="seu@restaurante.com.br" required>
+        </div>
+        <button type="submit" class="submit-btn" id="btn-forgot">
+          <span class="btn-text">Enviar link de recuperação</span>
+          <div class="spinner"></div>
+        </button>
+      </form>
+    </div>
+
+  </div><!-- /form-container -->
+
+  <div class="right-footer">
+    Precisa de ajuda? <a href="mailto:suporte@restaurantiq.com.br">suporte@restaurantiq.com.br</a>
+  </div>
+</div><!-- /right-panel -->
+
+<script>
+// ─── VALID ACCESS KEYS (demo — em produção vêm do Supabase) ───────────────
+// Estrutura real: tabela `access_keys` no banco com status, plano e tenant vinculado
+const DEMO_KEYS = {
+  'RIQ-DEMO-2025-PRO1': { plan: 'Pro', used: false },
+  'RIQ-DEMO-2025-STR1': { plan: 'Starter', used: false },
+  'RIQ-TEST-0000-0001': { plan: 'Business', used: false },
+};
+
+// ─── TAB SWITCH ──────────────────────────────────────────────────────────
+function showTab(tab) {
+  document.querySelectorAll('.form-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + tab).classList.add('active');
+  const tabEl = document.getElementById('tab-' + tab);
+  if (tabEl) tabEl.classList.add('active');
+  clearErrors();
+}
+
+function showForgot() { showTab('forgot'); }
+
+function clearErrors() {
+  document.querySelectorAll('.field-error').forEach(e => e.classList.remove('show'));
+  document.querySelectorAll('.field input').forEach(i => i.classList.remove('error'));
+  document.querySelectorAll('.status-card').forEach(c => c.style.display = 'none');
+}
+
+// ─── PASSWORD TOGGLE ──────────────────────────────────────────────────────
+function togglePassword(id, btn) {
+  const inp = document.getElementById(id);
+  const isPass = inp.type === 'password';
+  inp.type = isPass ? 'text' : 'password';
+  btn.querySelector('svg').style.opacity = isPass ? '0.5' : '1';
+}
+
+// ─── PASSWORD STRENGTH ────────────────────────────────────────────────────
+function checkPassword(input) {
+  const v = input.value;
+  const el = document.getElementById('pass-strength');
+  if (!v) { el.textContent = ''; el.style.color = ''; return; }
+  let score = 0;
+  if (v.length >= 8) score++;
+  if (/[A-Z]/.test(v)) score++;
+  if (/[0-9]/.test(v)) score++;
+  if (/[^A-Za-z0-9]/.test(v)) score++;
+  const labels = ['Muito fraca', 'Fraca', 'Razoável', 'Forte', 'Muito forte'];
+  const colors = ['#FF5A5A', '#FF8C42', '#F59E0B', '#00C896', '#00C896'];
+  el.textContent = 'Força: ' + labels[score];
+  el.style.color = colors[score];
+}
+
+// ─── ACCESS KEY FORMAT ────────────────────────────────────────────────────
+function formatKey(input) {
+  let v = input.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+  let formatted = '';
+  for (let i = 0; i < v.length && i < 16; i++) {
+    if (i > 0 && i % 4 === 0) formatted += '-';
+    formatted += v[i];
+  }
+  input.value = formatted;
+
+  const validEl = document.getElementById('key-valid-msg');
+  const errEl = document.getElementById('err-reg-key');
+
+  if (formatted.length === 19) {
+    const keyData = DEMO_KEYS[formatted];
+    if (keyData && !keyData.used) {
+      validEl.textContent = '';
+      validEl.innerHTML = `<div class="key-valid-dot"></div> Chave válida — Plano ${keyData.plan} identificado`;
+      validEl.classList.add('show');
+      errEl.classList.remove('show');
+      input.classList.remove('error');
+    } else {
+      validEl.classList.remove('show');
+      errEl.classList.add('show');
+      input.classList.add('error');
+    }
+  } else {
+    validEl.classList.remove('show');
+    errEl.classList.remove('show');
+    input.classList.remove('error');
+  }
+}
+
+// ─── SHOW ERROR ───────────────────────────────────────────────────────────
+function showError(inputId, errId) {
+  const inp = document.getElementById(inputId);
+  const err = document.getElementById(errId);
+  if (inp) inp.classList.add('error');
+  if (err) err.classList.add('show');
+}
+
+function setLoading(btnId, state) {
+  const btn = document.getElementById(btnId);
+  btn.classList.toggle('loading', state);
+  btn.disabled = state;
+}
+
+// ─── LOGIN ────────────────────────────────────────────────────────────────
+function handleLogin(e) {
+  e.preventDefault();
+  clearErrors();
+
+  const email = document.getElementById('login-email').value.trim();
+  const pass = document.getElementById('login-password').value;
+
+  if (!email.includes('@')) { showError('login-email', 'err-login-email'); return; }
+  if (pass.length < 6) { showError('login-password', 'err-login-pass'); return; }
+
+  setLoading('btn-login', true);
+
+  // Simula chamada ao Supabase Auth
+  setTimeout(() => {
+    setLoading('btn-login', false);
+
+    // DEMO: e-mail com "demo" entra, qualquer outro mostra erro
+    if (email.toLowerCase().includes('demo') || email === 'admin@restaurantiq.com') {
+      // Sucesso → redirecionar para dashboard
+      document.getElementById('form-login').innerHTML = `
+        <div class="status-card success-card" style="display:block;text-align:center;padding:24px">
+          <div style="font-size:28px;margin-bottom:8px">✓</div>
+          <div style="font-size:15px;font-weight:600;margin-bottom:4px">Login realizado!</div>
+          <div style="font-size:12px;opacity:.8">Redirecionando para o painel...</div>
+        </div>`;
+    } else {
+      const card = document.getElementById('login-error-card');
+      card.style.display = 'block';
+      card.textContent = 'E-mail ou senha incorretos. Verifique seus dados ou redefina sua senha.';
+    }
+  }, 1600);
+}
+
+// ─── REGISTER ─────────────────────────────────────────────────────────────
+function handleRegister(e) {
+  e.preventDefault();
+  clearErrors();
+
+  const name = document.getElementById('reg-name').value.trim();
+  const restaurant = document.getElementById('reg-restaurant').value.trim();
+  const email = document.getElementById('reg-email').value.trim();
+  const pass = document.getElementById('reg-password').value;
+  const key = document.getElementById('reg-key').value.trim();
+
+  let valid = true;
+  if (name.split(' ').length < 2) { showError('reg-name', 'err-reg-name'); valid = false; }
+  if (restaurant.length < 3) { showError('reg-restaurant', 'err-reg-restaurant'); valid = false; }
+  if (!email.includes('@')) { showError('reg-email', 'err-reg-email'); valid = false; }
+  if (pass.length < 8) { showError('reg-password', 'err-reg-pass'); valid = false; }
+
+  const keyData = DEMO_KEYS[key];
+  if (!keyData || keyData.used) { showError('reg-key', 'err-reg-key'); valid = false; }
+
+  if (!valid) return;
+
+  setLoading('btn-register', true);
+
+  // Simula criação no Supabase + validação de chave
+  setTimeout(() => {
+    setLoading('btn-register', false);
+
+    // Marca chave como usada (em produção: UPDATE access_keys SET used_at = NOW(), tenant_id = ...)
+    if (DEMO_KEYS[key]) DEMO_KEYS[key].used = true;
+
+    const card = document.getElementById('register-status-card');
+    card.className = 'status-card success-card';
+    card.style.display = 'block';
+    card.innerHTML = `<strong>✓ Conta criada com sucesso!</strong><br>
+      Você receberá um e-mail de confirmação em <strong>${email}</strong>.<br>
+      Após confirmar, faça login para acessar o painel.`;
+
+    document.getElementById('form-register').style.opacity = '0.4';
+    document.getElementById('form-register').style.pointerEvents = 'none';
+  }, 2000);
+}
+
+// ─── FORGOT PASSWORD ──────────────────────────────────────────────────────
+function handleForgot(e) {
+  e.preventDefault();
+  const email = document.getElementById('forgot-email').value.trim();
+  if (!email.includes('@')) return;
+
+  setLoading('btn-forgot', true);
+  setTimeout(() => {
+    setLoading('btn-forgot', false);
+    document.getElementById('forgot-success').style.display = 'block';
+    document.getElementById('form-forgot').style.opacity = '0.3';
+    document.getElementById('form-forgot').style.pointerEvents = 'none';
+  }, 1400);
+}
+</script>
+</body>
+</html>
